@@ -72,3 +72,58 @@ let isConnected = [
     [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]
 ];
 console.log(maxAreaOfIsland(isConnected))
+
+
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+ var shortestBridge = function (grid) {
+    //dfs get first island
+    const n = grid.length, direction = [-1, 0, 1, 0, -1];
+    const queue = new Array();
+    fistland: for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            if (grid[i]?.[j] === 1) {
+                let stack = new Array();
+                stack.push([i, j])
+                while (stack.length) {
+                    let [r, c] = stack.pop();
+                    if (grid[r]?.[c] === 1) {
+                        grid[r][c] = 2;
+                        for (let k = 0; k < 4; k++) stack.push([r + direction[k], c + direction[k + 1]]);
+                    } else if (grid[r]?.[c] === 0) {
+                        queue.push([r, c])
+                    }
+                }
+                break fistland;
+            }
+        }
+    }
+
+    //bfs 
+    let x, y, level = 0;
+    while (queue.length) {
+        level++;
+        let n = queue.length;
+        while (n--) {
+            let [r, c] = queue.shift();
+            grid[r][c] = 2
+            for (let i = 0; i < 4; i++) {
+                x = r + direction[i];
+                y = c + direction[i + 1];
+                if (grid[x]?.[y] === 1) return level
+                else if (grid[x]?.[y] === 2) continue;
+                else if (grid[x]?.[y] === 0) {
+                    queue.push([x, y]);
+                    grid[x][y] = 2
+                }
+            }
+        }
+    }
+    return 0
+};
+let grid = [[1, 1, 1, 1, 1], [1, 0, 0, 0, 1], [1, 0, 1, 0, 1], [1, 0, 0, 0, 1], [1, 1, 1, 1, 1]];
+
+grid =[[0,1],[1,0]]
+console.log(shortestBridge(grid))
