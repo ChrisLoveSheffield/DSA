@@ -4,7 +4,7 @@
   "prettier.semi": false,
   "prettier.printWidth": 120,
   "prettier.trailingComma": "es5",
-  "prettier.tabWidth": 4,
+  "prettier.tabWidth": 5,
   // You can use ${workspaceFolder} it will be replaced by workspaceFolder path
   "flow.pathToFlow": "${workspaceFolder}/node_modules/.bin/flow"
 
