@@ -5,6 +5,9 @@
   "main": "leetcode.js",
   "dependencies": {},
   "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.9",
+    "@babel/preset-flow": "^7.16.7",
     "prettier": "2.6.2"
   },
   "scripts": {
